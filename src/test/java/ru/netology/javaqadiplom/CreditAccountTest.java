@@ -17,4 +17,125 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(3_000, account.getBalance());
     }
+
+    //тесты для метода CreditAccount
+    @Test
+    public void shouldInitialNegativeBalance() { // тест на отрицательный стартовый баланс
+        CreditAccount account = new CreditAccount(
+                -100,
+                5_000,
+                15
+        );
+
+        account.getBalance();
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+    @Test
+    public void shouldInitialNegativeRate() { // тест на возможность задолжать банку сумму отрицательнного значения
+        CreditAccount account = new CreditAccount(
+                0,
+                -5_000,
+                15
+        );
+
+        Assertions.assertEquals(0, account.getCreditLimit());
+    }
+
+    //тесты для метода pay
+    @Test
+    public void shouldPayFalse() {
+        CreditAccount account = new CreditAccount(
+                0,
+                100,
+                15
+        );
+
+        boolean res = account.pay(200);
+        Assertions.assertFalse( res );
+    }
+    @Test
+    public void shouldPayTrue() {
+        CreditAccount account = new CreditAccount(
+                0,
+                1_000,
+                15
+        );
+
+        boolean res = account.pay(200);
+        Assertions.assertTrue( res );
+    }
+
+    @Test
+    public void shouldPayTrueBoundaryValues() {
+        CreditAccount account = new CreditAccount(
+                1_000,
+                0,
+                15
+        );
+        boolean res = account.pay(999);
+        Assertions.assertTrue( res );
+    }
+
+    //тесты для метода add
+    @Test
+    public void shouldAdd() {
+        CreditAccount account = new CreditAccount(
+                0,
+                1_000,
+                15
+        );
+        boolean res = account.add(999);
+        Assertions.assertTrue( res );
+    }
+
+    @Test
+    public void shouldAddZero() {
+        CreditAccount account = new CreditAccount(
+                0,
+                1_000,
+                15
+        );
+        boolean res = account.add(0);
+        Assertions.assertFalse( res );
+    }
+
+    @Test
+    public void shouldAddCash() { //тест на пополнение карты
+        CreditAccount account = new CreditAccount(
+                10,
+                0,
+                15
+        );
+        boolean res = account.add(10);
+        int actual = 20;
+        Assertions.assertTrue( res );
+        Assertions.assertEquals(actual, account.getBalance());
+    }
+
+    //тесты для метода yearChange
+    @Test
+    public void shouldNegativeScoreInterestCalculation() {
+        CreditAccount account = new CreditAccount(
+                -200,
+                0,
+                15
+        );
+        int res = account.yearChange();
+        int actual = -30;
+        Assertions.assertEquals(actual, res);
+    }
+
+
+    @Test
+    public void shouldInterestCalculation() {
+        CreditAccount account = new CreditAccount(
+                200,
+                0,
+                15
+        );
+        int res = account.yearChange();
+        int actual = 0;
+        Assertions.assertEquals(actual, res);
+    }
 }

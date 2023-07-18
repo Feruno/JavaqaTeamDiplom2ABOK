@@ -55,7 +55,7 @@ public class CreditAccountTest {
         Assertions.assertFalse( res );
     }
     @Test
-    public void shouldPayTrue() {
+    public void shouldPayTrue() { // должен уменьшится creditLimit на сумму покупки, но этого не происходит
         CreditAccount account = new CreditAccount(
                 0,
                 1_000,
@@ -63,18 +63,24 @@ public class CreditAccountTest {
         );
 
         boolean res = account.pay(200);
+
+        int resCreditLimit = 800;
         Assertions.assertTrue( res );
+        Assertions.assertEquals(resCreditLimit, account.getCreditLimit());
     }
 
     @Test
-    public void shouldPayTrueBoundaryValues() {
+    public void shouldPayTrueBoundaryValues() { // должен уменьшится initialBalance на сумму покупки, но этого не происходит
         CreditAccount account = new CreditAccount(
                 1_000,
                 0,
                 15
         );
         boolean res = account.pay(999);
+
+        int resSumAfterPay = 1;
         Assertions.assertTrue( res );
+        Assertions.assertEquals(resSumAfterPay, account.getBalance());
     }
 
     //тесты для метода add

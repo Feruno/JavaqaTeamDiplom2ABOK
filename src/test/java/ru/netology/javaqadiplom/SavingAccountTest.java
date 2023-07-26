@@ -116,17 +116,17 @@ public class SavingAccountTest {
         Assertions.assertEquals(1_650, account.getBalance());
     }
 
-//    @Test // 8
-//    public void shouldPayEgualToInitialBalance() { // оплата равная начальному балансу
-//        SavingAccount account = new SavingAccount(
-//                2_000,
-//                1_000,
-//                10_000,
-//                5
-//        );
-////
-//        account.pay(2_000);
-//        Assertions.assertEquals(2_000, account.getBalance());
+    @Test // 8
+    public void shouldPayEgualToInitialBalance() { // оплата равная начальному балансу
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                5
+        );
+//
+        account.pay(2_000);
+        Assertions.assertEquals(2_000, account.getBalance());
 //
 ////        boolean actual = account.pay(2_000);
 ////        Assertions.assertFalse(actual);
@@ -198,7 +198,7 @@ public class SavingAccountTest {
 //        Assertions.assertThrows(IllegalArgumentException.class, () -> {
 //            account.getBalance();
 //        });
-    }
+ }
     @Test // 13
     public void shouldYearChange1() { //расчёт 1% граничное значение
         SavingAccount account = new SavingAccount(
@@ -213,6 +213,34 @@ public class SavingAccountTest {
     }
 
     @Test // 14
+    public void shouldYearChangeThen0Persent() { //расчёт 0% граничное значение
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                0
+        );
+
+        account.yearChange();
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+    @Test // 15
+    public void shouldYearChangeThenNegativePercentage() { //расчёт отрицательный процент -1% граничное значение
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                10_000,
+                0
+        );
+
+        account.yearChange();
+        Assertions.assertEquals(0, account.getBalance());
+    }
+
+
+
+    @Test // 16
     public void shouldPayTrue() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -225,7 +253,7 @@ public class SavingAccountTest {
         Assertions.assertTrue(actual);
     }
 
-    @Test // 15
+    @Test // 17
     public void shouldPayFalse() {
         SavingAccount account = new SavingAccount(
                 2_000,
@@ -238,11 +266,11 @@ public class SavingAccountTest {
         Assertions.assertFalse(actual);
     }
 
-    @Test //16
+    @Test //18
     public void shouldSetMinBalance() { // текущий минбаланс
         SavingAccount account = new SavingAccount(
-                8_000,
                 1_000,
+                5_000,
                 10_000,
                 7
         );
@@ -252,7 +280,7 @@ public class SavingAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test // 17
+    @Test // 19
     public void shouldSetMaxBalance() { // текущий максбаланс
         SavingAccount account = new SavingAccount(
                 8_000,

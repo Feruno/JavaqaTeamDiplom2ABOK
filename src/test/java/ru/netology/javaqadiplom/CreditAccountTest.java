@@ -78,12 +78,12 @@ public class CreditAccountTest {
                 0,
                 15
         );
-//        boolean res = account.pay(999);
-        account.pay(999);
-//        int resSumAfterPay = 1;
+        boolean res = account.pay(999);
+//        account.pay(999);
+        int resSumAfterPay = 1;
 //        Assertions.assertTrue( res );
-//        Assertions.assertEquals(resSumAfterPay, account.getBalance());
-        Assertions.assertEquals(1, account.getBalance());
+        Assertions.assertEquals(resSumAfterPay, account.getBalance());
+//        Assertions.assertEquals(1, account.getBalance());
     }
 
     //тесты для метода add

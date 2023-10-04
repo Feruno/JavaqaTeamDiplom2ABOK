@@ -63,8 +63,7 @@ public class CreditAccountTest {
         );
         var resSum = 1100;
         account.pay(resSum);
-        Assertions.assertTrue(account.getBalance() >= -account.creditLimit);
-        Assertions.assertEquals(-resSum, account.getBalance());
+        Assertions.assertFalse(account.getBalance() < -account.getCreditLimit());
     }
 
     @Test

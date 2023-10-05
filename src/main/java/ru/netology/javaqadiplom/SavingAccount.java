@@ -47,7 +47,11 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        balance = balance - amount;
+        if( Math.signum(balance - amount) == -1){
+            return false;
+        }else {
+            balance = balance - amount;
+        }
         if (balance > minBalance) {
 
             return true;

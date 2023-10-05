@@ -190,9 +190,7 @@ public class SavingAccountTest {
                 15
         );
 
-
-        account.yearChange();
-        Assertions.assertEquals(300, account.getBalance());
+        Assertions.assertEquals(300, account.yearChange());
 
 
 //        Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -209,7 +207,7 @@ public class SavingAccountTest {
         );
 
         account.yearChange();
-        Assertions.assertEquals(20, account.getBalance());
+        Assertions.assertEquals(20, account.yearChange());
     }
 
     @Test // 14
@@ -222,7 +220,7 @@ public class SavingAccountTest {
         );
 
         account.yearChange();
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(0, account.yearChange());
     }
 
     @Test // 15
@@ -231,11 +229,11 @@ public class SavingAccountTest {
                 2_000,
                 1_000,
                 10_000,
-                0
+                -1
         );
 
         account.yearChange();
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(0, account.yearChange());
     }
 
 

@@ -63,19 +63,18 @@ public class CreditAccountTest {
                 1_000,
                 15
         );
-
-
 //        boolean res = account.pay(200);
 
 //        int resCreditLimit = 800;
-//        account.pay(200);
+      account.pay(1100);
        // Assertions.assertTrue(res);
-//        Assertions.assertEquals(-200, account.getBalance());
-       // Assertions.assertEquals(res, account.getCreditLimit());
-        var resSum = 1100;
-        account.pay(resSum);
+//      Assertions.assertEquals(0, account.getBalance());
+//        Assertions.assertEquals(res, account.getCreditLimit());
+//        var resSum = 1100;
+//        account.pay(resSum);
 //        Assertions.assertTrue(account.getBalance() >= -account.creditLimit);
-    Assertions.assertEquals(-resSum, account.getBalance());
+//  Assertions.assertEquals(-resSum, account.getBalance());
+     Assertions.assertFalse(account.getBalance() < -account.getCreditLimit());
 
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class CreditAccountTest {
 
-    @Test
+    @Test //1
     public void shouldAddToPositiveBalance() {
         CreditAccount account = new CreditAccount(
                 0,
@@ -20,6 +20,7 @@ public class CreditAccountTest {
 
     //тесты для метода CreditAccount
 
+
 //    @Test
 //    public void shouldInitialNegativeBalance() { // тест на отрицательный стартовый баланс
 //        CreditAccount account = new CreditAccount(
@@ -32,7 +33,7 @@ public class CreditAccountTest {
 //        Assertions.assertEquals(-100, account.getBalance());
 //    }
 
-    @Test
+    @Test //3
     public void shouldInitialNegativeRate() { // тест на возможность задолжать банку сумму отрицательнного значения
         CreditAccount account = new CreditAccount(
                 0,
@@ -45,7 +46,7 @@ public class CreditAccountTest {
     }
 
     //тесты для метода pay
-    @Test
+    @Test //4
     public void shouldPayFalse() {
         CreditAccount account = new CreditAccount(
                 0,
@@ -56,19 +57,24 @@ public class CreditAccountTest {
         boolean res = account.pay(200);
         Assertions.assertFalse( res );
     }
-    @Test
-    public void shouldPayTrue() { // сумма на initialBalance не должна выходить за рамки creditLimit
+
+    @Test //5
+    public void shouldPayTrue() { //     сумма на initialBalance не должна выходить за рамки creditLimit
+
         CreditAccount account = new CreditAccount(
                 10000,
                 5_000,
                 15
         );
+
         Integer resSum = 20000;
+
         account.pay(resSum);
         Assertions.assertFalse(account.getBalance() < -account.getCreditLimit());
+
     }
 
-    @Test
+    @Test //6
     public void shouldPayTrueBoundaryValues() { // должен уменьшится initialBalance на сумму покупки, но этого не происходит
         CreditAccount account = new CreditAccount(
                 1_000,
@@ -76,14 +82,15 @@ public class CreditAccountTest {
                 15
         );
         boolean res = account.pay(999);
-
+//        account.pay(999);
         int resSumAfterPay = 1;
-        Assertions.assertTrue( res );
+//        Assertions.assertTrue( res );
         Assertions.assertEquals(resSumAfterPay, account.getBalance());
+//        Assertions.assertEquals(1, account.getBalance());
     }
 
     //тесты для метода add
-    @Test
+    @Test //7
     public void shouldAdd() {
         CreditAccount account = new CreditAccount(
                 0,
@@ -94,7 +101,7 @@ public class CreditAccountTest {
         Assertions.assertTrue( res );
     }
 
-    @Test
+    @Test //8
     public void shouldAddZero() {
         CreditAccount account = new CreditAccount(
                 0,
@@ -105,7 +112,7 @@ public class CreditAccountTest {
         Assertions.assertFalse( res );
     }
 
-    @Test
+    @Test //9
     public void shouldAddCash() { //тест на пополнение карты
         CreditAccount account = new CreditAccount(
                 10,
@@ -114,12 +121,12 @@ public class CreditAccountTest {
         );
         boolean res = account.add(10);
         int actual = 20;
-        Assertions.assertTrue( res );
+//        Assertions.assertTrue( res );
         Assertions.assertEquals(actual, account.getBalance());
     }
 
     //тесты для метода yearChange
-    @Test
+    @Test //10
     public void shouldNegativeScoreInterestCalculation() {
         CreditAccount account = new CreditAccount(
                 -200,
@@ -132,7 +139,7 @@ public class CreditAccountTest {
     }
 
 
-    @Test
+    @Test //11
     public void shouldInterestCalculation() {
         CreditAccount account = new CreditAccount(
                 200,

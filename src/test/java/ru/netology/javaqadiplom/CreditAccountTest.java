@@ -63,7 +63,7 @@ public class CreditAccountTest {
                 5_000,
                 15
         );
-        Integer resSum = 10000;
+        Integer resSum = 20000;
         account.pay(resSum);
         Assertions.assertFalse(account.getBalance() < -account.getCreditLimit());
     }

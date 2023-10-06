@@ -82,9 +82,6 @@ public class SavingAccountTest {
     }
 
 
-
-
-
     @Test //6
     public void shouldPayLowThanMixBalance() {  //оплата с остатком меньше, чем минбаланс
         SavingAccount account = new SavingAccount(
@@ -193,10 +190,8 @@ public class SavingAccountTest {
         Assertions.assertEquals(300, account.yearChange());
 
 
-//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-//            account.getBalance();
-//        });
- }
+    }
+
     @Test // 13
     public void shouldYearChange1() { //расчёт 1% граничное значение
         SavingAccount account = new SavingAccount(
@@ -211,7 +206,7 @@ public class SavingAccountTest {
     }
 
     @Test // 14
-    public void shouldYearChangeThen0Persent() { //расчёт 0% граничное значение
+    public void shouldYearChangeThenPersent0() { //расчёт 0% граничное значение
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -223,19 +218,18 @@ public class SavingAccountTest {
         Assertions.assertEquals(0, account.yearChange());
     }
 
-    @Test // 15
-    public void shouldYearChangeThenNegativePercentage() { //расчёт отрицательный процент -1% граничное значение
-        SavingAccount account = new SavingAccount(
-                2_000,
-                1_000,
-                10_000,
-                -1
-        );
-
-        account.yearChange();
-        Assertions.assertEquals(0, account.yearChange());
-    }
-
+//    @Test // 15
+//    public void shouldYearChangeThenNegativePercentage() { //расчёт отрицательный процент -1% граничное значение
+//        SavingAccount account = new SavingAccount(
+//                2_000,
+//                1_000,
+//                10_000,
+//                -1
+//        );
+//
+//        account.yearChange();
+//        Assertions.assertEquals(0, account.yearChange());
+//    }
 
 
     @Test // 16
@@ -291,5 +285,63 @@ public class SavingAccountTest {
         int actual = account.maxBalance;
         Assertions.assertEquals(expected, actual);
     }
-}
+
+    @Test // 20
+    public void shouldNegativeRate() { // исключение отрицательная процентная ставка
+
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    8_000,
+                    1_000,
+                    10_000,
+                    -7
+            );
+            ;
+        });
+    }
+
+    @Test // 21
+    public void shouldExceptionThenMixBalanceAboveMaxBalance() { // исключение минбаланс больше максбаланса
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    10_000,
+                    18_000,
+                    11_000,
+                    10
+            );
+            ;
+        });
+    }
+
+    @Test // 22
+    public void shouldExceptionThenMaxBalanceLowMinBalance() { // исключение начальный баланс больше максимального
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    14_000,
+                    1_000,
+                    10_000,
+                    10
+            );
+            ;
+        });
+    }
+
+        @Test // 23
+        public void shouldExceptionThenInitialBalanceLowMixBalance () { // исключение начальный баланс меньше минбаланса
+
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                SavingAccount account = new SavingAccount(
+                        3_000,
+                        10_000,
+                        15_000,
+                        10
+                );
+                ;
+            });
+        }
+    }
+
 

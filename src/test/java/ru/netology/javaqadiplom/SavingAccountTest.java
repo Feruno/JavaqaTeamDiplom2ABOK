@@ -273,7 +273,7 @@ public class SavingAccountTest {
                 7
         );
         int minBalance = account.minBalance;
-        int expected = 1_000;
+        int expected = 5_000;
         int actual = account.minBalance;
         Assertions.assertEquals(expected, actual);
     }

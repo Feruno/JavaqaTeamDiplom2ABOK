@@ -35,7 +35,7 @@ public class CreditAccountTest {
 
     @Test //3
     public void shouldInitialNegativeRate() { // тест на возможность задолжать банку сумму отрицательнного значения
-        Assertions.assertThrows(IllegalArgumentException.class , () ->{
+        Assertions.assertThrows(IllegalAccessException.class , () ->{
             CreditAccount account = new CreditAccount(
                     0,
                     -5000,

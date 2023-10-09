@@ -3,6 +3,7 @@ package ru.netology.javaqadiplom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 public class SavingAccountTest {
+
     @Test //1
     public void shouldAddLessThanMaxBalance() { //пополнение счёта меньше чем максбаланс
         SavingAccount account = new SavingAccount(
@@ -120,8 +121,8 @@ public class SavingAccountTest {
         account.pay(2_000);
         Assertions.assertEquals(2_000, account.getBalance());
 
-////        boolean actual = account.pay(2_000);
-////        Assertions.assertFalse(actual);
+//        boolean actual = account.pay(2_000);
+//        Assertions.assertFalse(actual);
     }
 
     @Test //9
@@ -161,8 +162,6 @@ public class SavingAccountTest {
                 5
         );
 
-//        account.pay(999);
-//        Assertions.assertEquals(1_001, account.getBalance());
 
         boolean actual = account.pay(999);
         Assertions.assertTrue(actual);
@@ -335,5 +334,8 @@ public class SavingAccountTest {
             });
         }
     }
+
+
+
 
 

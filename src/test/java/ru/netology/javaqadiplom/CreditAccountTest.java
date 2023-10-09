@@ -62,19 +62,21 @@ public class CreditAccountTest {
     public void shouldPayTrue() { //     сумма на initialBalance не должна выходить за рамки creditLimit
 
         CreditAccount account = new CreditAccount(
-                10000,
+                10_000,
                 5_000,
                 15
         );
 
-        Integer resSum = 20000;
+        Integer resSum = 20_000;
 
         account.pay(resSum);
         Assertions.assertFalse(account.getBalance() < -account.getCreditLimit());
 
+
     }
 
-    @Test //6
+
+      @Test //6
     public void shouldPayTrueBoundaryValues() { // должен уменьшится initialBalance на сумму покупки, но этого не происходит
         CreditAccount account = new CreditAccount(
                 1_000,

@@ -42,22 +42,45 @@ public class CreditAccount extends Account {
      * @param amount - сумма покупки
      * @return true если операция прошла успешно, false иначе.
      */
-    @Override
-    public boolean pay(int amount) {
-        if (amount <= 0) {
-            return false;
-        }
-//        balance = balance - amount;
-        balance = balance + creditLimit -amount;
-        if (balance > creditLimit) {
-//            balance = -amount;
-//            if (balance < balance - creditLimit) {
+//    @Override
+//    public boolean pay(int amount) {
+//        if (amount <= 0) {
+//            return false;
+//        }
+//        if (balance < amount && creditLimit < amount){
+//            return false;
+//        }
+//       balance = balance - amount;
+//        //balance = balance + creditLimit -amount;
+////        if (balance + creditLimit - amount >= creditLimit) {
+//  //          if (balance - amount + creditLimit >= creditLimit) {
+//        if (balance < creditLimit) {
+//           balance = balance - amount;
+////            if (balance < balance - creditLimit) {
+//            return true;
+//
+//        } else {
+//
+//            return false;
+        @Override
+        public boolean pay(int amount) {
+            if (amount <= 0) {
+                return false;
+            }
+            if ((creditLimit + balance) < amount){
+                return false;
+            }
 
-            return true;
-        } else {
-            return false;
+            if (balance > -creditLimit) {
+                balance -= amount;
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
+
+
+
 
     /**
      * Операция пополнения карты на указанную сумму.

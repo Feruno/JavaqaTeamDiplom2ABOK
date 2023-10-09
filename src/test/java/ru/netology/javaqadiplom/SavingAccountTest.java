@@ -261,7 +261,7 @@ public class SavingAccountTest {
     @Test //18
     public void shouldSetMinBalance() { // текущий минбаланс
         SavingAccount account = new SavingAccount(
-                1_000,
+                6_000,
                 5_000,
                 10_000,
                 7

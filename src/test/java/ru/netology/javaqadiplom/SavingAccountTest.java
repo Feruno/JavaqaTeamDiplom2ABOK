@@ -58,11 +58,11 @@ public class SavingAccountTest {
                 5
         );
 
-        account.add(8_000);
-        Assertions.assertEquals(10_000, account.getBalance());
+//        account.add(8_000);
+//        Assertions.assertEquals(10_000, account.getBalance());
 
-//        boolean actual = account.add(8_000);
-//        Assertions.assertTrue(actual);
+        boolean actual = account.add(8_000);
+        Assertions.assertTrue(actual);
     }
 
     @Test //5
@@ -77,8 +77,6 @@ public class SavingAccountTest {
         account.add(7_999);
         Assertions.assertEquals(9_999, account.getBalance());
 
-//        boolean actual = account.add(7_999);
-//        Assertions.assertTrue(actual);
     }
 
 
@@ -94,9 +92,6 @@ public class SavingAccountTest {
         account.pay(7_000);
 
         Assertions.assertEquals(2_000, account.getBalance());
-//
-//        boolean actual = account.pay(2_000);
-//        Assertions.assertFalse(actual);
     }
 
     @Test //7
@@ -121,10 +116,10 @@ public class SavingAccountTest {
                 10_000,
                 5
         );
-//
+
         account.pay(2_000);
         Assertions.assertEquals(2_000, account.getBalance());
-//
+
 ////        boolean actual = account.pay(2_000);
 ////        Assertions.assertFalse(actual);
     }
@@ -141,8 +136,6 @@ public class SavingAccountTest {
         account.pay(1_001);
         Assertions.assertEquals(2_000, account.getBalance());
 
-//        boolean actual = account.pay(1_001);
-//        Assertions.assertFalse(actual);
     }
 
     @Test // 10
@@ -157,8 +150,6 @@ public class SavingAccountTest {
         account.pay(1_000);
         Assertions.assertEquals(1_000, account.getBalance());
 
-//        boolean actual = account.pay(1_000);
-//        Assertions.assertTrue(actual);
     }
 
     @Test // 11
@@ -218,18 +209,19 @@ public class SavingAccountTest {
         Assertions.assertEquals(0, account.yearChange());
     }
 
-//    @Test // 15
-//    public void shouldYearChangeThenNegativePercentage() { //расчёт отрицательный процент -1% граничное значение
-//        SavingAccount account = new SavingAccount(
-//                2_000,
-//                1_000,
-//                10_000,
-//                -1
-//        );
-//
-//        account.yearChange();
-//        Assertions.assertEquals(0, account.yearChange());
-//    }
+    @Test // 15
+    public void shouldYearChangeThenNegativePercentage() { //расчёт отрицательный процент -1% граничное значение
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    8_000,
+                    1_000,
+                    10_000,
+                    -1
+            );
+            ;
+        });
+    }
 
 
     @Test // 16

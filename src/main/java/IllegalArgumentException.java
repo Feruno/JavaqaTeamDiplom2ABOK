@@ -1,5 +1,5 @@
 public class IllegalArgumentException extends RuntimeException {
-   public IllegalArgumentException(String msg){
-       super(msg);
-  }
+    public IllegalArgumentException(String msg) {
+        super(msg);
+    }
 }

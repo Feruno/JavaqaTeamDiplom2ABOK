@@ -63,12 +63,12 @@ public class SavingAccount extends Account {
         if (amount <= 0) {
             return false;
         }
-        if (amount > getMinBalance() ){
+        if (amount > getMinBalance()) {
             return false;
         }
-        if( Math.signum(balance - amount) == -1){
+        if (Math.signum(balance - amount) == -1) {
             return false;
-        }else {
+        } else {
             balance = balance - amount;
         }
         if (balance > minBalance) {
